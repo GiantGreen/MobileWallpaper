@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>全面屏手机壁纸官网 - 一个专为全面屏和刘海屏手机适配的2K超高清壁纸网站</title>
+    <meta name="keywords"
+          content="全面屏壁纸,刘海屏壁纸,全面屏18:9壁纸,三星手机壁纸,曲面屏壁纸,三星s8壁纸,s8+壁纸,note8壁纸,iphoneX手机壁纸,oppo壁纸,vivo壁纸,小米壁纸,华为壁纸,一加壁纸,文字壁纸,风景壁纸,美女壁纸">
+    <meta name="description"
+          content="一个专为全面屏18:9,19:9手机适配的壁纸网站。壁纸分辨率为2960x1440,2560x1440,2280x1080,2260x1080,2436x1125,2160x1080,2560x1080,2340x1080,2316x1080等。已适配目前所有的品牌手机，包含三星s8、s9、note8、note9曲面屏,iphoneX壁纸,oppo全面屏壁纸,vivo全面屏壁纸,小米mix,小米8,华为全面屏壁纸,一加全面屏壁纸,等所有全面屏手机。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f1e3e3">
+    <meta name="msapplication-TileColor" content="#f1e3e3">
+
+    <link rel="stylesheet"
+          href="../static/css/style.css">
+    <link rel="shortcut icon" type="images/x-icon" href="http://bizhi.bcoderss.com/wp-content/themes/bizhi/favicon.ico">
+
+
+    <script src="../static/js/hm.js"></script>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/masonry-docs.js"></script>
+
+    <script>
+$(function() {
+    var $container = $('#masonry');
+    $container.imagesLoaded(function() {
+        $container.masonry({
+                itemSelector: '.box',
+                gutter: 20,
+                isAnimated: true,
+            });
+     });
+});
+    </script>
+
+    <script>
+
+  $(function(){
+
+    $(".box").hover(function() {
+      $(this).find('.title').stop().fadeIn('300');
+      /* Stuff to do when the mouse enters the element */
+    }, function() {
+      /* Stuff to do when the mouse leaves the element */
+        $(this).find('.title').stop().fadeOut('300');
+    });
+
+
+/*  $("body").on("hover",".box",function(event){
+
+    $(this).find('.title').stop().fadeToggle('300');
+
+
+  });*/
+})
+
+
+
+
+
+
+
+$(function(){
+
+
+    $(".box").hover(function() {
+
+          $(this).find('.title').stop().fadeIn('300');
+    $(this).children('.wallpaper img').css({
+      '-webkit-box-shadow' : '0 15px 30px rgba(0,0,0,0.1)',
+      'box-shadow' : '0 15px 30px rgba(0,0,0,0.1)',
+      '-webkit-transform' : ' translate3d(0,-2px,0)',
+      'transform' : 'translate3d(0,-4px,0)'
+    });
+
+      /* Stuff to do when the mouse enters the element */
+    }, function() {
+
+        $(this).find('.title').stop().fadeOut('300');
+      /* Stuff to do when the mouse leaves the element */
+    });
+
+
+
+
+})
+
+
+    </script>
+
+</head>
+
+
+<body onclick="copyUrl2()">
+
+<div class="tag">
+    <a href="{{ url_for('home.index') }}" class="" title="所有" style="font-size: 14px;">所有壁纸</a>
+    {% for newtag in newtags %}
+    <a href="{{ url_for('home.showtag',tagname=newtag) }}" class="tag-cloud-link tag-link-9 tag-link-position-{{loop.index}}" title="{{ newtag }}"
+       style="font-size: 14px;">{{ newtag }}</a>
+    {% endfor %}
+</div>
+
+
+<div id="masonry" class="container-fluid">
+    {% for file in files %}
+    <a href="{{ url_for('home.showpic',tagname=file['tag'],filename=file['filename']|format_filenameurl)}}"
+       target="_blank" alt="">
+        <div class="box" style="margin:10px;" postid="8008">
+            <div class="wallpaper"><img width="260" height="534"
+                                        src="./static/previewimg/{{ file['filename']|format_filename}}"
+                                        class="attachment-thumbnail size-thumbnail wp-post-image" alt=""/></div>
+            <div class="title"><span>{{ file['tag']}}</span></div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<div style="margin-bottom: 123px;" id="pagination" class="page_navi article-paging">
+    {% if tagname is none %}
+    {% if 1< maxpage <=10 %}
+    <a href="{{ url_for('home.index') }}?page=1" class="num  current">首页</a>
+
+    {% for _ in range(2,maxpage) %}
+        <a href="{{ url_for('home.index') }}?page={{_}}" class="num ">{{_}}</a>
+    {% endfor %}
+    {% endif %}
+
+    {% if maxpage > 10 %}
+    <a href="{{ url_for('home.index') }}?page=1" class="num  current">首页</a>
+    {% for _ in range(page,page+8) %}
+    <a href="{{ url_for('home.index') }}?page={{_}}" class="num ">{{_}}</a>
+    {% endfor %}
+
+    <a href="{{ url_for('home.index') }}?page={{ maxpage }}" class="extend" title="跳转到最后一页"> 最后一页 </a>
+    {% endif %}
+    {% endif %}
+
+
+    {% if tagname is not none %}
+        {% if 1< maxpage <=10 %}
+        <a href="{{ url_for('home.showtag',tagname=tagname) }}?page=1" class="num  current">首页</a>
+
+    {% for _ in range(2,maxpage) %}
+        <a href="{{ url_for('home.showtag',tagname=tagname) }}?page={{_}}" class="num ">{{_}}</a>
+    {% endfor %}
+    {% endif %}
+
+    {% if maxpage > 10 %}
+    <a href="{{ url_for('home.showtag',tagname=tagname) }}?page=1" class="num  current">首页</a>
+    {% for _ in range(page,page+8) %}
+    <a href="{{ url_for('home.showtag',tagname=tagname) }}?page={{_}}" class="num ">{{_}}</a>
+    {% endfor %}
+
+    <a href="{{ url_for('home.showtag',tagname=tagname) }}?page={{ maxpage }}" class="extend" title="跳转到最后一页"> 最后一页 </a>
+    {% endif %}
+
+    {% endif %}
+</div>
+
+
+<footer id="footer" class="footer" style="
+
+    color: white;
+    text-align: center;
+">
+
+    <div class="footer-inner" style="
+    text-align: center;
+">
+        <div class="copyright">
+
+
+            <span itemprop="copyrightYear">©2019</span>
+            <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+            <span class="author" itemprop="copyrightHolder"><a style="color:white;"
+                                                               href="http://bizhi.bcoderss.com/sitemap/">全面屏壁纸 | 每天分享精美壁纸</a></span>
+        </div>
+    </div>
+
+</footer>
+
+
+</body>
+</html>
+<!-- Dynamic page generated in 0.377 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2019-02-19 13:36:35 -->
+<!-- super cache -->

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美景 - 全面屏手机壁纸</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="theme-color" content="#f1e3e3">
+    <meta name="msapplication-TileColor" content="#f1e3e3"/>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="images/x-icon"
+          href="http://bizhi.bcoderss.com/wp-content/themes/bizhi/favicon.ico"/>
+
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="../static/js/masonry-docs.min.js"></script>
+
+    <script>
+$(function() {
+    var $container = $('#masonry');
+    $container.imagesLoaded(function() {
+        $container.masonry({
+                itemSelector: '.box',
+                gutter: 20,
+                isAnimated: true,
+            });
+     });
+});
+
+
+
+    </script>
+
+    <script>
+
+  $(function(){
+
+    $(".box").hover(function() {
+      $(this).find('.title').stop().fadeIn('300');
+      /* Stuff to do when the mouse enters the element */
+    }, function() {
+      /* Stuff to do when the mouse leaves the element */
+        $(this).find('.title').stop().fadeOut('300');
+    });
+
+
+/*  $("body").on("hover",".box",function(event){
+
+    $(this).find('.title').stop().fadeToggle('300');
+
+
+  });*/
+})
+
+
+
+
+
+
+
+$(function(){
+
+
+    $(".box").hover(function() {
+
+          $(this).find('.title').stop().fadeIn('300');
+    $(this).children('.wallpaper img').css({
+      '-webkit-box-shadow' : '0 15px 30px rgba(0,0,0,0.1)',
+      'box-shadow' : '0 15px 30px rgba(0,0,0,0.1)',
+      '-webkit-transform' : ' translate3d(0,-2px,0)',
+      'transform' : 'translate3d(0,-4px,0)'
+    });
+
+      /* Stuff to do when the mouse enters the element */
+    }, function() {
+
+        $(this).find('.title').stop().fadeOut('300');
+      /* Stuff to do when the mouse leaves the element */
+    });
+
+
+
+
+})
+
+
+    </script>
+
+</head>
+
+
+<style>
+	.bottom {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    bottom: 0px;
+    z-index: 1111;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: white;
+    padding: 14px 0px;
+}
+
+.btn.homebtn {
+    background: #3b76fe;
+    display: block;
+    margin: 0 auto;
+    width: 64%;
+    height: 42px;
+    line-height: 43px;
+    text-align: center;
+    color: #fff;
+    border-radius: 42px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+
+
+</style>
+
+
+<div class="single-cover" onclick="copyUrl2()">
+
+    <style>
+
+
+    </style>
+
+    <div class="tag">
+    <a href="{{ url_for('home.index') }}" class="" title="所有" style="font-size: 14px;">所有壁纸</a>
+    {% for newtag in newtags %}
+    <a href="{{ url_for('home.showtag',tagname=newtag) }}" class="tag-cloud-link tag-link-9 tag-link-position-{{loop.index}}" title="{{ newtag }}"
+       style="font-size: 14px;">{{ newtag }}</a>
+    {% endfor %}
+    </div>
+
+    <style>
+	.bizhi_title{
+		text-align: center;
+		color:white;
+	}
+
+    .tag-a a{
+        color:red;
+        color: #0fcc8c;
+    font-weight: 800;
+    font-size: 18px;
+    }
+
+        li.cat-item {
+    display: -webkit-inline-box;
+    color:wheat;
+}
+
+
+    </style>
+    <div class="container-fluid">
+        <h2 class="bizhi_title"> {{tag}}</h2>
+
+        <style>
+
+@media screen and (min-width: 600px) {
+    .mobile-gg{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .pc-gg{
+        display: none;
+    }
+}
+
+
+.choice{
+    position: relative;
+    color: wheat;
+
+}
+.choice li{
+       float: left;
+    margin-right: 1px;
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 28px;
+    border-right: 1px solid;
+}
+.choice a{
+    color:white;
+    padding: 5px 10px;
+}
+
+.wallpaper {
+    display: inline-block;
+    background: #232323;
+    border-radius: 23px;
+    padding-top: 3px;
+}
+  .clear{
+        clear:both;
+    }
+
+
+        </style>
+
+        <div class="tag tag-a" style="padding-top: 0px;">
+            <p style="color:white;text-align: center;">查看更多有关: <a
+                    href="{{url_for('home.showtag',tagname=tag)}}" rel="tag">{{tag}}</a>的壁纸</p>
+            <p style="color:white;text-align: center;">壁纸分辨率: {{height}}x{{width}} 上传作者：官方账号</p>
+        </div>
+        <p style="color:white;text-align: center;">喜欢的不妨点个收藏,百度不一定能找到哦~ 手机壁纸分享QQ群：<a
+                href="https://jq.qq.com/?_wv=1027&k=5jvOBMb"><b style="color:#0fcc8c;">274202152</b></a></p>
+        <div class="post">
+
+            <a class="wallpaper"
+               href="../static/download/{{realfile['filename']}}"
+               download="{{filename}}"><img class="alignnone size-full wp-image-14753"
+                                     src="../static/download/{{realfile['filename']}}"
+                                     alt="" width="4000" height="6000"/></a><a class="download-btn"
+                                                                               href="../static/download/{{realfile['filename']}}"
+                                                                               download="{{filename}}">下载壁纸</a>
+
+            <div class="fbl">
+                <p>1920x1080: 适合所有非全面屏手机，包括iphone plus系列</p>
+                <p>2160x1080: 18比9屏幕手机</p>
+                <p>2280x1080: 19比9屏幕手机,如vivo z1，一加6</p>
+                <p>2316x1080：19.3比9屏幕，比如：VIVO NEX</p>
+                <p>2340x1080：19.5比9屏幕，比如：OPPO Find X</p>
+                <p>2560x1440：2K分辨率，三星s7，s7edge,华为Mate 10等</p>
+                <p>2960x1440: 2K分辨率，三星s8、s8+，s9，s9+，note8.note9...</p>
+                <p>2436x1125: iphoneX</p>
+            </div>
+
+
+            <footer id="footer" class="footer" style="
+
+    color: white;
+    text-align: center;
+">
+
+                <div class="footer-inner" style="
+    text-align: center;
+">
+                    <div class="copyright">
+
+
+                        <span itemprop="copyrightYear">©2019</span>
+                        <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+                        <span class="author" itemprop="copyrightHolder"><a style="color:white;"
+                                                                           href="/">全面屏壁纸 | 每天分享精美壁纸</a></span>
+                    </div>
+                </div>
+
+            </footer>
+
+
+            </body>
+
+
+</html>
+
+
+</div>
+
+</div>
+<!-- <a class="download" href="http://pan.bcoderss.com/?dir=bizhi">一键打包所有壁纸</a> -->
+
+
+<style>
+	.download{
+		    position: fixed;
+    bottom: 0px;
+    background-color: #ff5d5d;
+    right: 3%;
+    text-decoration: none;
+    padding: 8px 10px;
+    color: white;
+	}
+
+.close{
+        text-align: center;
+    display: block;
+    background: #f9f9f9;
+    width: 83px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+       margin-top: 13px;
+}
+
+.fbl {
+    color: #8a8a8a;
+    text-align: center;
+    margin-top: 0px;
+}
+
+
+</style>
+
+<script>
+	/*点赞*/
+$.fn.postLike = function () {
+    if ($(this).hasClass('done')) {
+        alert('爱，只需要一次就够了！');
+        return false;
+    } else {
+        $(this).addClass('done');
+        var id = $(this).data("id"),
+            action = $(this).data('action'),
+            rateHolder = $(this).children('.count');
+        var ajax_data = {
+            action: "dotGood",
+            um_id: id,
+            um_action: action
+        };
+        $.post("/wp-admin/admin-ajax.php", ajax_data,
+            function (data) {
+                $(rateHolder).html(data);
+            });
+        return false;
+    }
+};
+$(".dotGood").click(function () {
+    $(this).postLike();
+});
+/*点赞*/
+
+
+</script>
+
+
+<!-- Dynamic page generated in 0.235 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2019-02-21 09:37:14 -->
+
+<!-- super cache -->
